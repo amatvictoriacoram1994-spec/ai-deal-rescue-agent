@@ -1,0 +1,31 @@
+{
+  "name": "ai-deal-rescue-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A human-controlled deal rescue workflow. Phase 1 validates read-only HubSpot deal access.",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "auth:gmail-revops": "npm run build --silent && node dist/authGmailRevops.js",
+    "auth:calendar-revops": "npm run build --silent && node dist/authCalendarRevops.js",
+    "auth:gmail-compose-revops": "npm run build --silent && node dist/authGmailComposeRevops.js",
+    "test:scoring": "npm run build --silent && node --test dist/scoring.test.js",
+    "test:gmail": "npm run build --silent && node --test dist/gmailMatching.test.js dist/dealContext.test.js dist/clients/reliability.test.js",
+    "test:calendar": "npm run build --silent && node --test dist/calendarMatching.test.js dist/clients/calendarClient.test.js",
+    "test:calendar-live": "npm run build --silent && node dist/testCalendarLive.js",
+    "test:risk-live": "npm run build --silent && node dist/testLiveDealRisk.js",
+    "test:claude": "npm run build --silent && node --test dist/claudeContracts.test.js",
+    "test:claude-live": "npm run build --silent && node dist/testClaudeLive.js",
+    "test:gmail-draft": "npm run build --silent && node --test dist/gmailDraftProposal.test.js dist/clients/gmailDraftClient.test.js",
+    "test:gmail-draft-live": "npm run build --silent && node dist/testGmailDraftLive.js",
+    "test:gmail-live": "npm run build --silent && node dist/testGmailLive.js",
+    "test:hubspot-live": "npm run build --silent && node dist/testHubSpotLive.js"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
